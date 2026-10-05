@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#8FD0FF">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>블록 대륙</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="stage">
+  <!-- 처음 화면: 소리를 켜기 위해 한 번 눌러야 해요 -->
+  <section class="screen" id="sTitle"></section>
+  <!-- 처음 설정 -->
+  <section class="screen" id="sSetup"></section>
+  <!-- 메인 -->
+  <section class="screen" id="sHome"></section>
+  <!-- 이야기 -->
+  <section class="screen" id="sStory"></section>
+  <!-- 놀이 -->
+  <section class="screen" id="sGame"></section>
+  <!-- 스티커북 -->
+  <section class="screen" id="sBook"></section>
+  <!-- 부모 영역 -->
+  <section class="screen" id="sParent"></section>
+  <!-- 마무리 -->
+  <section class="screen" id="sEnd"></section>
+  <!-- 마을, 수업, 오늘의 학습, 이야기 20일 -->
+  <section class="screen" id="sVillage"></section>
+  <section class="screen" id="sLesson"></section>
+  <section class="screen" id="sToday"></section>
+  <section class="screen" id="sDaily"></section>
+  <section class="screen" id="sExplore"></section>
+  <!-- 위에 뜨는 것들 -->
+  <div id="overlay"></div>
+</div>
+<script src="js/data.js"></script>
+<script src="js/engine.js"></script>
+<script src="js/content.js"></script>
+<script src="js/hangul.js"></script>
+<script src="js/numbers.js"></script>
+<script src="js/english.js"></script>
+<script src="js/science.js"></script>
+<script src="js/curriculum.js"></script>
+<script src="js/kid.js"></script>
+<script src="js/baked.js"></script>
+<script>
+  /* 미리 구워 둔 3D 그림(baked.js)이 없을 때만 그 자리에서 3D로 그린다. ?bake=1 이면 다시 굽고, ?live=1 이면 굽지 않고 그려서 보기만 한다. */
+  (function () {
+    var bake = /[?&]bake=1/.test(location.search);
+    if (window.BAKED && !bake && !/[?&]live=1/.test(location.search)) return;
+    var list = ['https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js', 'js/three3d.js', 'js/three3d_chars.js', 'js/three3d_more.js', 'js/three3d_bg.js', 'js/three3d_map.js'];
+    if (bake) list.push('js/bake.js');
+    list.forEach(function (src) { var s = document.createElement('script'); s.src = src; s.async = false; document.head.appendChild(s); });
+  })();
+</script>
+<script src="js/story1.js"></script>
+<script src="js/stories2.js"></script>
+<script src="js/stories3.js"></script>
+<script src="js/games.js"></script>
+<script src="js/games2.js"></script>
+<script src="js/app.js"></script>
+<script src="js/toys.js"></script>
+<script src="js/toy.js"></script>
+</body>
+</html>
